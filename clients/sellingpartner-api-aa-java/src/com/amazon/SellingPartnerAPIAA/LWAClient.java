@@ -3,14 +3,10 @@ package com.amazon.SellingPartnerAPIAA;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import okhttp3.*;
 import org.apache.commons.lang3.EnumUtils;
 
 class LWAClient {
@@ -45,7 +41,7 @@ class LWAClient {
     }
 
     String getAccessTokenFromCache(LWAAccessTokenRequestMeta lwaAccessTokenRequestMeta) throws LWAException {
-        String accessTokenCacheData = (String) lwaAccessTokenCache.get(lwaAccessTokenRequestMeta);
+        String accessTokenCacheData = lwaAccessTokenCache.get(lwaAccessTokenRequestMeta);
         if (accessTokenCacheData != null) {
             return accessTokenCacheData;
         } else {
